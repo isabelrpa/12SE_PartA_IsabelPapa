@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block head %}
+<header>
+    <h1>TRIPTROVE</h1>
+    <nav>
+        <a href="/form">Add a Trip!</a>
+        <a href="#">Sort</a>
+    </nav>
+</header>
+{% endblock %}
+
+{% block body %}
+<div>
+    <h2>My Trips</h2>
+</div>
+<div>
+    {% for trip in trips %}
+   <div class="trip-card">
+    <a href="/trip{{trip_id}}">
+    <div class="trip-img">
+        <img src="{{ url_for('static', filename='nyc.jpeg') }}" alt="New York City">
+    </div>
+    </a>
+    <div class="trip-details">
+        <div class="trip-left">
+            <h1>{{trip.trip_location}}</h1>
+            <h2>{{trip.trip_start}} - {{trip.trip_end}}</h2>
+        </div>
+        <div class="trip-right">
+                <div class="rating">
+                    {% for star in range(1,6) %}
+                    {% if star <= trip.rating %}
+                    <span class="star filled">★</span>
+                    {% else %}
+                    <span class="star empty">★</span>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <menu>≡</menu>
+            </div>
+        </div>
+    </div>
+   </div>
+   {% endfor %}
+</div>
+{% endblock %}
+
+{% block footer %}
+<p>TRIPTROVE 2025</p>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block head %}
+<header>
+    <h1>TRIPTROVE</h1>
+    <nav>
+        <a href="/form">Add a Trip!</a>
+        <a href="#">Sort</a>
+    </nav>
+</header>
+{% endblock %}
+
+{% block body %}
+<div>
+    <h2>NEW YORK</h2>
+    <div>
+        <div class="pan">
+            <img src="{{ url_for('static', filename='nycpan.jpeg') }}" alt="New York City">
+        </div>
+        <div class="trip-buttons">
+            <a href="#" class="trip-btn">JOURNAL</a>
+            <a href="#" class="trip-btn">PHOTO ALBUM</a>
+            <a href="#" class="trip-btn">SPENDING LOG</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<p>TRIPTROVE 2025</p>
+
+{% endblock %}
