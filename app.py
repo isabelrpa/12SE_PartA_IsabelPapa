@@ -14,7 +14,6 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 
-# Create uploads folder if it doesn't exist
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 def allowed_file(filename):
@@ -185,11 +184,6 @@ def trip(trip_id):
         return "Trip not found", 404
     
     return render_template('trip.html', trip=trip)
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
