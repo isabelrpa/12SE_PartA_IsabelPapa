@@ -2,9 +2,11 @@
 
 {% block head %}
 <header>
-    <h1>TRIPTROVE</h1>
+    <h1>
+        <a href="/">TRIPTROVE</a>
+    </h1>
     <nav>
-        <a href="/form">Add a Trip!</a>
+        <a href="/create">Add a Trip!</a>
         <a href="#">Sort</a>
     </nav>
 </header>
@@ -14,12 +16,16 @@
 <div>
     <h2>My Trips</h2>
 </div>
-<div>
+<div class="trips-container">
     {% for trip in trips %}
    <div class="trip-card">
-    <a href="/trip{{trip_id}}">
+    <a href="/trip/{{trip.trip_id}}">
     <div class="trip-img">
-        <img src="{{ url_for('static', filename='nyc.jpeg') }}" alt="New York City">
+        {% if trip.trip_image %}
+            <img src="{{ url_for('static', filename=trip.trip_image) }}" alt="{{ trip.trip_location }}">
+        {% else %}
+            <img src="{{ url_for('static', filename='nyc.jpeg') }}" alt="{{ trip.trip_location }}">
+        {% endif %}
     </div>
     </a>
     <div class="trip-details">
@@ -37,13 +43,49 @@
                     {% endif %}
                     {% endfor %}
                 </div>
-                <menu>≡</menu>
+                <menu class="hamburger-menu" data-trip-id="{{trip.trip_id}}">≡</menu>
+                <div class="popup-menu" id="popup-{{trip.trip_id}}">
+                    <h1>MANAGE YOUR TRIP</h1>
+                    <a href="/update/{{trip.trip_id}}" class="popup-option update-option"> → Edit</a>
+                    <a href="/delete/{{trip.trip_id}}" class="popup-option delete-option" onclick="return confirm('Are you sure you want to delete this trip?')"> → Delete</a>
+                </div>
             </div>
         </div>
     </div>
-   </div>
    {% endfor %}
 </div>
+
+<script>
+// Toggle popup menu when hamburger is clicked
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgers = document.querySelectorAll('.hamburger-menu');
+    
+    hamburgers.forEach(function(hamburger) {
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const tripId = this.getAttribute('data-trip-id');
+            const popup = document.getElementById('popup-' + tripId);
+            
+            document.querySelectorAll('.popup-menu').forEach(function(p) {
+                if (p.id !== 'popup-' + tripId) {
+                    p.classList.remove('show');
+                }
+            });
+            
+            popup.classList.toggle('show');
+        });
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.hamburger-menu') && !e.target.closest('.popup-menu')) {
+            document.querySelectorAll('.popup-menu').forEach(function(popup) {
+                popup.classList.remove('show');
+            });
+        }
+    });
+});
+</script>
+
 {% endblock %}
 
 {% block footer %}
