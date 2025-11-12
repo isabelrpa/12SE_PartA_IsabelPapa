@@ -1,17 +1,24 @@
-h1 {font-family: 'Work Sans', sans-serif;
-font-size: 20px;
-font-weight: lighter;
-color: rgb(1,1,1);
-padding-left: 1rem;
+h1, h1 a {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 20px;
+    font-weight: lighter;
+    color: rgb(1,1,1);
+    padding: 0;
+    padding-left: 1rem;
+    border: none;
+    background-color: transparent;
+    border-radius: 0;
+    text-decoration: none;
 }
-
+    
 h2 {font-family: 'Work Sans', sans-serif;
-font-size: 40px;
-font-weight: normal;
-color: rgb(0, 0, 0);
-padding-left: 2rem;
-}
-
+    font-size: 50px;
+    font-weight: normal;
+    color: rgb(0, 0, 0);
+    padding-left: 2rem;
+    }
+        
+    
 h3 {
     font-family: 'Work Sans', sans-serif;
     font-size: 20px;
@@ -22,8 +29,8 @@ h3 {
     padding-right: 3rem;
     border-radius: 10px;
     display: inline-block;
-}
-
+    }
+    
 header {
     display: flex;
     justify-content: space-between;
@@ -41,8 +48,8 @@ footer {
     background-color: rgb(199, 203, 209);
     margin-top: auto;
 }
-
-a {
+    
+nav a {
     font-family: 'Work Sans', sans-serif;
     font-size: 15px;
     font-weight: lighter;
@@ -55,9 +62,9 @@ a {
     background-color: rgb(255, 255, 255);
     border-radius: 25px;
     display: inline-block;
-}
-
-
+    }
+    
+    
 p{
     font-family: 'Work Sans', sans-serif;
     font-size: 20px;
@@ -65,7 +72,7 @@ p{
     color: rgb(1,1,1);
     margin-left: 1rem;
 }
-
+    
 body {
     margin: 0;
     padding: 0;
@@ -73,41 +80,40 @@ body {
     display: flex;
     flex-direction: column;
 }
-
+    
 nav {
     display: flex;
     gap: 1rem;
 }
-
-
-
-
+    
+.trips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 2rem 2rem;
+    justify-content: center;
+}
 
 .trip-card {
-    width: 350px;
-    height: 250px;
+    width: 420px;
     background-color: rgb(200, 200, 200);
-    overflow: hidden;
-    margin-left: 3rem;
-    margin-top: 2rem;
-    margin-right: 1rem;
-    margin-bottom: 2rem;
+    margin: 0;
     cursor: pointer;
+    position: relative;
 }
 
 .trip-img {
     width: 100%;
-    height: 180px;
-    overflow: hidden;
+    height: 210px;
 }
-
+    
 .trip-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
-
+    
 .trip-card a {
     padding: 0;
     border: none;
@@ -117,17 +123,18 @@ nav {
     cursor: pointer;
     text-decoration: none;
 }
-
+    
 .trip-card h1 {
     padding: 0;
     margin: 0.2rem 0 0.2rem 0;
     font-family: 'Work Sans', sans-serif;
-    font-size: 15px;
-    font-weight: normal;
+    font-size: 30px;
+    font-weight: lighter;
     visibility: visible;
     color: rgb(52, 91, 124);
+    text-transform: uppercase;
 }
-
+    
 .trip-card h2 {
     padding: 0;
     margin: 0.2rem 0;
@@ -138,13 +145,14 @@ nav {
     visibility: visible;
     opacity: 1;
 }
-
+    
 .trip-details {
     height: 70px;
     padding: 0.5rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    position: relative;
 }
 
 .trip-left {
@@ -157,6 +165,9 @@ nav {
     flex-direction: column;
     align-items: flex-end;
     gap: 0.25rem;
+    position: relative;
+    padding-right: 0rem;
+    margin-right: 0rem; 
 }
 
 .trip-details h3 {
@@ -170,9 +181,10 @@ nav {
     display: inline-block;
 }
 
+
+/* UPDATED: Menu button in bottom right corner BELOW rating */
 .trip-details menu {
     margin: 0;
-    margin-top: -0.5rem;
     padding: 0;
     font-size: 32px;
     color: rgb(147, 147, 147);
@@ -181,8 +193,20 @@ nav {
     list-style: none;
     align-items: center;
     justify-content: center;
+    position: bottom;
+    bottom: 0.25rem;
+    right: 1rem;
 }
 
+.trip-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+    position: relative;
+    padding-right: 0rem;
+    margin-right: 0rem;
+}
 
 .rating {
     display: flex;
@@ -202,12 +226,9 @@ nav {
     color: rgb(180, 180, 180);
 }
 
-
-
 .pan {
     width: 100%;
-    height: 40vh; /* 40% of viewport height */
-    overflow: hidden;
+    height: 40vh;
 }
 
 .pan img {
@@ -217,7 +238,7 @@ nav {
     display: block;
 }
 
-
+/* Trip Card Button Styles */
 
 .trip-buttons {
     display: flex;
@@ -244,7 +265,7 @@ nav {
 }
 
 
-
+/* Add Trip Form Styles */
 
 .form-container {
     max-width: 1200px;
@@ -345,4 +366,102 @@ nav {
 
 .cancel-btn:hover {
     background-color: rgba(1, 1, 1, 0.05);
+}
+
+
+
+/* Popup Menu Styles */
+.popup-menu {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    left: auto;
+    margin-bottom: 0.5rem;
+    background-color: white;
+    border: 1px solid rgb(180, 180, 180);
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    min-width: 150px;
+    z-index: 1000;
+}
+
+.popup-menu.show {
+    display: flex;
+}
+
+.popup-option {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    color: rgb(1, 1, 1);
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    display: block;
+    text-align: left;
+    transition: background-color 0.2s;
+}
+
+.popup-option:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+.popup-option.delete-option {
+    color: rgb(52, 91, 124);
+}
+
+.popup-option.delete-option:hover {
+    background-color: rgb(230, 240, 250);
+}
+
+
+
+/* Rating input styles for forms */
+.rating-input {
+    display: flex;
+    gap: 0.3rem;
+    cursor: pointer;
+}
+
+.star-input {
+    font-size: 32px;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.star-input:hover {
+    transform: scale(1.2);
+}
+
+.star-input.filled {
+    color: gold;
+}
+
+.star-input.empty {
+    color: rgb(180, 180, 180);
+}
+
+.error-message {
+    display: none;
+    color: rgb(200, 50, 50);
+    font-size: 14px;
+    margin-top: 0.25rem;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.char-count {
+    font-size: 14px;
+    color: rgb(100, 100, 100);
+    margin-top: 0.25rem;
+    text-align: right;
+    display: block;
+    font-family: 'Work Sans', sans-serif;
+}
+
+input[type="date"] {
+    cursor: pointer;
 }
